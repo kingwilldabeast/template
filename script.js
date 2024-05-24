@@ -11,7 +11,7 @@ let myString = "hello"
 /*------------------------ Cached Element References ------------------------*/
 
 const buttonElement = document.querySelector('#myButtonID')
-
+const button = document.querySelector("#button1")
 /*-------------------------------- Functions --------------------------------*/
 
 

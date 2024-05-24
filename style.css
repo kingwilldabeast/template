@@ -1,0 +1,98 @@
+
+body {
+    display: flex;
+    justify-content: center; /* LEFT to RIGHT */
+    align-items: center; /* TOP to BOTTOM */
+
+}
+
+#parent1 {
+    width: 200px;
+    height: 200px;
+    border: 2px solid red;
+
+    display: flex;
+    flex-direction: row; /* row is the default */
+    justify-content: flex-start; /* LEFT to RIGHT */
+    align-items: flex-end; /* TOP to BOTTOM */
+}
+
+.childA {
+    width: 50px;
+    height: 50px;
+    border: 2px solid blue;
+
+    display: flex;
+}
+
+#parent2 {
+    width: 200px;
+    height: 200px;
+    border: 2px solid pink;
+
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; /* TOP to BOTTOM */
+    align-items: flex-end; /* LEFT to RIGHT */
+}
+
+.childB {
+    width: 50px;
+    height: 50px;
+    border: 2px solid green;
+    display: flex;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg) ; }
+    50% { transform: rotate(180deg) ;}
+    100% { transform: rotate(360deg)  ; }
+}
+
+@keyframes zigzag {
+    0% {
+        transform: translate(0,0);
+      }
+
+    50% {
+        transform: translate(-300%, 400%);
+    }
+
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes zigzagSpin {
+    0% {
+        transform: translate(0,0) rotate(0deg);
+      }
+    
+    20% {
+        transform: translate(-400%, 100%) rotate(360deg);
+    }
+
+    40% {
+        transform: translate(200%, -400%) rotate(0deg);
+    }
+
+    60% {
+        transform: translate(-300%, 400%) rotate(360deg);
+    }
+
+    80% {
+        transform: translate(400%, -50%) rotate(0deg);
+    }
+    
+    100% {
+        transform: translate(0,0) rotate(360deg);
+    }
+}
+
+.flying {
+    /* animation: spin 3s linear infinite; */
+    /* animation: zigzag 3s linear infinite, zigzag 4s linear infinite; */
+    animation: zigzagSpin 4s linear infinite;
+    /* animation: zigzag 4s linear infinite, spin 3s linear infinite; */
+    /* animation: spin 3s linear infinite, zigzag 4s linear infinite; */
+
+}
