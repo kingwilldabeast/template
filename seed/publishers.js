@@ -1,7 +1,9 @@
 const db = require('../db')
-const { Publisher } = require('../models')
-
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+const { Publisher } = require('../models') //with models/index.js
+// const Publisher  = require('../models/publisher') //without index
+
 
 const main = async () => {
    

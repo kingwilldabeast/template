@@ -16,9 +16,9 @@ TERMINAL COMMANDS:
 5. npm run dev
 
 Those steps will add these items:
+* file "package.json" **Note: Make sure it references the correct JS file of server.js**
 * folder "node_modules"
 * file "package-lock.json"
-* file "package.json" **Note: Make sure it references the correct JS file**
 
 
 ## from lesson on Mongoose and MVC, on Thursday 5/23/2024
@@ -44,7 +44,21 @@ Those steps will add these items:
 * files publishers.js books.js 
 * file touch query.js
 
-TERMINAL for mongo:
+Notes: 
+* models filenames are singular, seed filenames are plural.
+* In model file, the Schema name is capital singular.
+* In seed file, the array is plural.
+* the id is not defined by the user, it is generated automatically when an object is created 
+* Parents have their own ID/primary key
+* Children have their own ID/primary key, but also have a foreign key, which is the Parent's primary key
+* the Foreign Key is presented as array: theParent[0]._id
+* schema can have subdocument or embedded schema, example is in employee.js and employee.js
+
+
+## Mongo lesson, on Wednesday 5/22/2024:
+https://github.com/kingwilldabeast/u2_lesson_mongoDB
+
+TERMINAL COMMANDS for mongo:
 * mongosh
 * db
 * Show dbs
@@ -63,3 +77,41 @@ Mongo Terminal examples:
 * db.users.deleteOne( { name: "Joey" } )
 * db.users.deleteMany( { status: "pending" } )
 * db.users.deleteMany({})
+
+## Friday 5/24/2024 combining Mongoose and Express
+https://github.com/kingwilldabeast/u2_lesson_mongoose_express
+https://github.com/kingwilldabeast/u2_mongoose_express_plants
+
+TERMINAL COMMANDS and other steps 
+1. fork and clone into terminal
+2. mkdir client controllers db models seed 
+2. touch client/{index.html,style.css,script.js} controllers/{EventController,ComicController,VenueController}.js db/index.js models/{event,comic,venue,index}.js seed/initData.js server.js
+2. touch query.js  //OPTIONAL
+2. touch seed/{brands,products}.js //Alternate
+1. npm init -y //creates package.json
+2. npm install mongoose express cors morgan body-parser
+2. * mongoose //creates node modules folder and package-lock.json
+2. * express //necessary for controllers 
+2. * cors //used to make smooth the connection between front end and back end
+2. * morgan //shows commands that are in command line
+2. * body-parser //used in create and update json in thunder client
+3. npm install nodemon --save-dev
+3. add to package.json scripts:  "start":"node server.js",
+  "dev":"nodemon server.js"
+5. add stuff to server.js including: 
+* const logger = require('morgan');
+* const bodyParser = require('body-parser')
+* app.use(logger('dev'))
+* app.use(bodyParser.json()) 
+2. node seed/brands.js
+2. node seed/products.js
+1. touch .gitignore //OPTIONAL
+add:
+ /node_modules
+.DS_Store
+5. add mongo stuff to the express stuff in server.js
+5. add file paths to server.js
+to add controllers:
+7. add stuff to controller but use res.json not res.send like before
+8. add controller variable and app.get filepaths to server.js
+9. npm run dev

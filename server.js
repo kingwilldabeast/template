@@ -1,31 +1,54 @@
 const express = require('express')
-const cors = require('cors')
-const catController = require('./controllers/CatController')
-const dogController = require('./controllers/DogController')
-const PORT = process.env.PORT || 3001
+const cors = require('cors');
+const bodyParser = require(`body-parser`)
+const logger = require(`morgan`)
 
 const app = express()
+app.use(cors());
+app.use(bodyParser.json())
+app.use(logger(`dev`))
 
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+const db = require('./db')
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-app.listen(PORT, () => {
-    console.log(`listening to port ${PORT}`)
-})
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
 
-app.get('/', (req,res) => {
-    res.send(`working!`)
-})
+//FILEPATHS
+const BrandController = require('./controllers/BrandController')
+const BicycleController = require('./controllers/BicycleController')
+const BellController = require('./controllers/BellController')
 
-app.get('/cats', catController.getCats)
+//LANDING PAGE
+app.get('/', (req, res) => res.send('This is our landing page!'))
 
-app.get('/cats/:id', catController.getCat)
+//READ GET 
+app.get('/brands', BrandController.getAllBrands)
+app.get('/bicycles', BicycleController.getAllBicycles)
+app.get('/bells', BellController.getAllBells)
 
-app.get('/dogs', dogController.getDogs)
-
-app.get('/dogs/:id', dogController.getDog)
+app.get('/brands/:id', BrandController.getBrandById)
+app.get('/bicycles/:id', BicycleController.getBicycleById)
+app.get('/bells/:id', BellController.getBellById)
 
 app.get('/dogsName/:id', dogController.getDogName)
-
 app.get('/dogsColor/:color', dogController.getDogColor)
+
+//CREATE POST
+app.post('/brands', BrandController.createBrand)
+app.post('/bicycles', BicycleController.createBicycle)
+app.post('/bells', BellController.createBell)
+
+//UPDATE PUT
+app.put('/brands/:id', BrandController.updateBrand)
+app.put('/bicycles/:id', BicycleController.updateBicycle)
+app.put('/bells/:id', BellController.updateBell)
+
+//DELETE
+app.delete('/brands/:id', BrandController.deleteBrand)
+app.delete('/bicycles/:id', BicycleController.deleteBicycle)
+app.delete('/bells/:id', BellController.deleteBell)
+
+
+//DEFAULT
+app.get('*', (req, res) => res.send('404 page not found'))

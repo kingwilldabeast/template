@@ -35,3 +35,4 @@ async function myAPIFunction() {
 /*----------------------------- Event Listeners -----------------------------*/
 
 buttonElement.addEventListener('click', myFunction)
+document.addEventListener('DOMContentLoaded', myFunction)

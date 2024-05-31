@@ -1,6 +1,8 @@
+//CHILD schema that references parent by ID
+
 const { Schema } = require('mongoose')
 
-const Book = new Schema(
+const bookSchema = new Schema(
     {
         title: { type: String, required: true },
         author: { type: String, required: true },
@@ -11,5 +13,10 @@ const Book = new Schema(
 
 )
 
-//exporting 
-module.exports = Book
+//VERSION THAT USES INDEX.JS
+module.exports = bookSchema
+
+//ALTERNATE WITHOUT INDEX.JS
+// const mongoose = require('mongoose')
+// const Book = mongoose.model('Book', bookSchema)
+// module.exports = Book

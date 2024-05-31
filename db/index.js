@@ -1,11 +1,9 @@
-
-
 //this pulls in all of our mongoose information from the modules we installed through node (the `npm i mongoose` commmand)
 //they are required for all of these actions to run... hence 'require'
 const mongoose = require('mongoose')
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/DATABASE_NAME')
+    .connect('mongodb://127.0.0.1:27017/DATABASE_NAME') //replace DATABASE_NAME with the actual name of database. only thing that changes
     .then(() => {
         console.log('Successfully connected to MongoDB.')
       })

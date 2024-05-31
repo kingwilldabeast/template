@@ -1,6 +1,8 @@
+//Parent Schema
+
 const { Schema } = require('mongoose')
 
-const Publisher = new Schema(
+const publisherSchema = new Schema(
     {
         name: {type: String, required: true},
         location: {type: String, required: true},
@@ -10,5 +12,10 @@ const Publisher = new Schema(
 
 )
 
-//exporting this thing called a Publisher and all of its information so other files can use it
-module.exports = Publisher
+//VERSION THAT USES INDEX.JS
+module.exports = publisherSchema
+
+//ALTERNATE WITHOUT INDEX.JS
+// const mongoose = require('mongoose')
+// const Publisher = mongoose.model('Publisher', publisherSchema)
+// module.exports = Publisher
